@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="61aeb1b2-5ffb-4dec-995a-a1b5dda6c8f1" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Users\igorr\.m2\wrapper\dists\apache-maven-3.6.3-bin\1iopthnavndlasol9gbrbg6bf2\apache-maven-3.6.3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="ProjectId" id="1lFeExGXug6zm6fraDT1J6H36EU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../wamp64/www/dev.paygibdd/php.php" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\igorr\IdeaProjects\graduate-work\src\main\resources\templates" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.iorazutkin.graduatework.dto" />
+      <recent name="com.iorazutkin.graduatework.entity.task" />
+      <recent name="com.iorazutkin.graduatework.repos" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="GraduateWorkApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="graduate-work" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.iorazutkin.graduatework.GraduateWorkApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="61aeb1b2-5ffb-4dec-995a-a1b5dda6c8f1" name="Default Changelist" comment="" />
+      <created>1607197160366</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607197160366</updated>
+      <workItem from="1607197162075" duration="3669000" />
+      <workItem from="1607246784686" duration="1972000" />
+      <workItem from="1607365446239" duration="947000" />
+      <workItem from="1607366520816" duration="5006000" />
+      <workItem from="1607950327227" duration="22000" />
+      <workItem from="1607974218556" duration="2721000" />
+      <workItem from="1608010715053" duration="138000" />
+      <workItem from="1608096684966" duration="557000" />
+      <workItem from="1608122012817" duration="922000" />
+      <workItem from="1608134179719" duration="12735000" />
+      <workItem from="1608359285598" duration="12763000" />
+      <workItem from="1608374394248" duration="30000" />
+      <workItem from="1608488050459" duration="6274000" />
+      <workItem from="1608529268487" duration="1260000" />
+      <workItem from="1608534597963" duration="66000" />
+      <workItem from="1608561176345" duration="738000" />
+      <workItem from="1608577894578" duration="8000" />
+      <workItem from="1608657636286" duration="3092000" />
+      <workItem from="1608971731357" duration="1762000" />
+      <workItem from="1611166414344" duration="144000" />
+      <workItem from="1611166643268" duration="3558000" />
+      <workItem from="1611599270376" duration="3247000" />
+      <workItem from="1611680874970" duration="8671000" />
+      <workItem from="1612079458130" duration="118000" />
+      <workItem from="1612079721646" duration="1256000" />
+      <workItem from="1612196302904" duration="11410000" />
+      <workItem from="1612290545361" duration="3183000" />
+      <workItem from="1612369573324" duration="6455000" />
+      <workItem from="1613459683972" duration="13676000" />
+      <workItem from="1613547609456" duration="5862000" />
+      <workItem from="1613638185041" duration="16272000" />
+      <workItem from="1613895029002" duration="14272000" />
+      <workItem from="1613978515243" duration="3258000" />
+      <workItem from="1614196292838" duration="69000" />
+      <workItem from="1614259741143" duration="892000" />
+      <workItem from="1614364438795" duration="635000" />
+      <workItem from="1614409822474" duration="5114000" />
+      <workItem from="1614496752282" duration="4839000" />
+      <workItem from="1615360682370" duration="872000" />
+      <workItem from="1615362547584" duration="120000" />
+      <workItem from="1615363344623" duration="1671000" />
+      <workItem from="1615374695653" duration="22000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

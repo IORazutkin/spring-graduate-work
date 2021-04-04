@@ -1,5 +1,7 @@
 package com.iorazutkin.graduatework.entity.task;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iorazutkin.graduatework.view.task.AnswerView;
 import lombok.Data;
 
 import javax.persistence.Embeddable;
@@ -16,6 +18,7 @@ public class AnswerPK implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "question_id")
+  @JsonView(AnswerView.class)
   private Question question;
 
   public AnswerPK () {}

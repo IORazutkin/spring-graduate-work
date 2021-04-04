@@ -1,5 +1,6 @@
 package com.iorazutkin.graduatework.api.task;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.iorazutkin.graduatework.dto.AnswerDto;
 import com.iorazutkin.graduatework.entity.user.User;
 import com.iorazutkin.graduatework.entity.task.Answer;
@@ -10,6 +11,7 @@ import com.iorazutkin.graduatework.repo.task.TaskResultRepo;
 import com.iorazutkin.graduatework.service.task.AnswerService;
 import com.iorazutkin.graduatework.service.task.QuestionService;
 import com.iorazutkin.graduatework.service.task.TaskResultService;
+import com.iorazutkin.graduatework.view.task.AnswerView;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,7 @@ public class AnswerController {
   private final TaskResultRepo taskResultRepo;
 
   @GetMapping("{id}")
+  @JsonView(AnswerView.class)
   public ResponseEntity<List<Answer>> findAllByTask (
     @AuthenticationPrincipal User auth,
     @PathVariable Long id
@@ -39,6 +42,7 @@ public class AnswerController {
   }
 
   @PostMapping("{id}")
+  @JsonView(AnswerView.class)
   public ResponseEntity<Answer> addAnswer (
     @AuthenticationPrincipal User auth,
     @PathVariable Long id,

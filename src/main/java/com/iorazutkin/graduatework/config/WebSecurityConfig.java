@@ -1,6 +1,6 @@
 package com.iorazutkin.graduatework.config;
 
-import com.iorazutkin.graduatework.service.UserService;
+import com.iorazutkin.graduatework.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

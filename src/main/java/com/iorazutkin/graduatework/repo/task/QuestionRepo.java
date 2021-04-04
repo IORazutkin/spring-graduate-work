@@ -7,5 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface QuestionRepo extends JpaRepository<Question, Long> {
-  List<Question> findAllByTask(Task task);
+  List<Question> findAllByTask (Task task);
+  Integer countAllByTask (Task task);
 }

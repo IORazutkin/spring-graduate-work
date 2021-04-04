@@ -4,7 +4,127 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61aeb1b2-5ffb-4dec-995a-a1b5dda6c8f1" name="Default Changelist" comment="" />
+    <list default="true" id="61aeb1b2-5ffb-4dec-995a-a1b5dda6c8f1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/dto/TaskWithResultDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/exception/BadRequestException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/exception/FileNotDeleted.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/exception/ForbiddenException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/exception/InternalException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/exception/NotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/service/FileService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/service/practice/PracticeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/service/practice/StudentPracticeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/service/practice/ThemeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/service/task/AnswerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/service/task/QuestionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/service/task/TaskResultService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/service/task/TaskService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/service/user/StudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/service/user/TeacherService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/institute/CourseView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/institute/CourseWithInstituteView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/institute/GroupView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/institute/InstituteView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/practice/PracticeAuthView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/practice/PracticeView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/practice/StudentPracticeAuthListView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/practice/StudentPracticeAuthView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/practice/StudentPracticeListView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/practice/StudentPracticeView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/practice/ThemeView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/task/QuestionTestView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/task/QuestionView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/task/TaskView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/view/user/UserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/13a60b91-35a7-4088-9158-ff2be38899fa.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/13a60b91-35a7-4088-9158-ff2be38899fa.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/institute/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/institute/CourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/institute/GroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/institute/GroupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/institute/InstituteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/institute/InstituteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/practice/PracticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/practice/PracticeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/practice/StudentPracticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/practice/StudentPracticeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/practice/ThemeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/practice/ThemeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/task/AnswerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/task/AnswerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/task/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/task/QuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/task/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/api/task/TaskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/dto/PracticeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/dto/PracticeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/dto/QuestionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/dto/QuestionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/dto/TaskDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/dto/TaskDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/user/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/user/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/user/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/UserPK.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/user/UserPK.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/institute/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/institute/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/institute/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/institute/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/institute/Institute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/institute/Institute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/practice/Practice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/practice/Practice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/practice/StudentPractice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/practice/StudentPractice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/practice/StudentPracticePK.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/practice/StudentPracticePK.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/practice/Theme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/practice/Theme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/practice/Work.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/practice/Work.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/task/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/task/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/task/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/task/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/task/TaskResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/task/TaskResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/task/Theory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/entity/task/Theory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/StudentRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/StudentRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/TeacherRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/TeacherRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/UserRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/practice/PracticeRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/practice/PracticeRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/practice/StudentPracticeRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/practice/StudentPracticeRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/practice/ThemeRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/practice/ThemeRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/task/QuestionRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/task/QuestionRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/task/TaskRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/task/TaskRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/task/TaskResultRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/repo/task/TaskResultRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iorazutkin/graduatework/service/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/institute/CourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/institute/CourseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/institute/GroupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/institute/GroupController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/institute/InstituteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/institute/InstituteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/practice/PracticeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/practice/PracticeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/practice/StudentPracticeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/practice/StudentPracticeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/practice/ThemeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/practice/ThemeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/task/AnswerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/task/AnswerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/task/QuestionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/task/QuestionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/task/TaskController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/api/task/TaskController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/config/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/dto/PracticeDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/dto/PracticeDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/dto/TaskDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/dto/TaskDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/Student.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/Teacher.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/User$Info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/UserPK.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/institute/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/institute/Course.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/institute/Group.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/institute/Group.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/institute/Institute.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/institute/Institute.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/practice/Practice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/practice/Practice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/practice/StudentPractice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/practice/StudentPractice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/practice/StudentPracticePK.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/practice/StudentPracticePK.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/practice/Theme.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/practice/Theme.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/practice/Work.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/practice/Work.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/task/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/task/Question.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/task/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/task/Task.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/task/TaskResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/task/TaskResult.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/task/Theory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/entity/task/Theory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/StudentRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/StudentRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/TeacherRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/TeacherRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/UserRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/UserRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/practice/PracticeRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/practice/PracticeRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/practice/StudentPracticeRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/practice/StudentPracticeRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/practice/ThemeRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/practice/ThemeRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/task/QuestionRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/task/QuestionRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/task/TaskRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/task/TaskRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/task/TaskResultRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/repo/task/TaskResultRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iorazutkin/graduatework/service/UserService.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,10 +137,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -39,6 +162,7 @@
   </component>
   <component name="PhpDebugGeneral" listening_started="true" />
   <component name="ProjectId" id="1lFeExGXug6zm6fraDT1J6H36EU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -61,6 +185,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -74,6 +199,17 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GraduateWorkApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="graduate-work" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.iorazutkin.graduatework.GraduateWorkApplication" />
@@ -132,10 +268,40 @@
       <workItem from="1615362547584" duration="120000" />
       <workItem from="1615363344623" duration="1671000" />
       <workItem from="1615374695653" duration="22000" />
+      <workItem from="1615632383763" duration="279000" />
+      <workItem from="1615809520427" duration="681000" />
+      <workItem from="1615812512645" duration="6000" />
+      <workItem from="1615813953762" duration="980000" />
+      <workItem from="1615825109267" duration="2734000" />
+      <workItem from="1615969216091" duration="13000" />
+      <workItem from="1616419359326" duration="701000" />
+      <workItem from="1616424734708" duration="1492000" />
+      <workItem from="1616529114208" duration="1910000" />
+      <workItem from="1616584179654" duration="9000" />
+      <workItem from="1617192020291" duration="1763000" />
+      <workItem from="1617197460128" duration="1625000" />
+      <workItem from="1617210884774" duration="14566000" />
+      <workItem from="1617305443672" duration="3481000" />
+      <workItem from="1617309007512" duration="46000" />
+      <workItem from="1617441262172" duration="8195000" />
+      <workItem from="1617469460250" duration="3781000" />
+      <workItem from="1617521139519" duration="9283000" />
     </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <created>1615632542738</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1615632542738</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
   </component>
 </project>

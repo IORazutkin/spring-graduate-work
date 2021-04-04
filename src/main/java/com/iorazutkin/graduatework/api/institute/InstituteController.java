@@ -2,6 +2,7 @@ package com.iorazutkin.graduatework.api.institute;
 
 import com.iorazutkin.graduatework.entity.institute.Institute;
 import com.iorazutkin.graduatework.repo.institute.InstituteRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -14,12 +15,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/institute")
+@RequiredArgsConstructor
 public class InstituteController {
-  @Autowired
-  private InstituteRepo instituteRepo;
+  private final InstituteRepo instituteRepo;
 
   @GetMapping
   public ResponseEntity<List<Institute>> findAll () {
-    return new ResponseEntity<>(instituteRepo.findAll(Sort.by("title")), null, HttpStatus.OK);
+    return ResponseEntity.ok(instituteRepo.findAll(Sort.by("title")));
   }
 }

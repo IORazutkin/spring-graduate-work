@@ -1,156 +1,137 @@
 package com.iorazutkin.graduatework.api.task;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.iorazutkin.graduatework.dto.TaskDto;
-import com.iorazutkin.graduatework.entity.User;
+import com.iorazutkin.graduatework.dto.TaskWithResultDto;
 import com.iorazutkin.graduatework.entity.practice.Practice;
 import com.iorazutkin.graduatework.entity.task.Task;
+import com.iorazutkin.graduatework.entity.task.TaskResult;
 import com.iorazutkin.graduatework.entity.task.Theory;
-import com.iorazutkin.graduatework.repo.practice.PracticeRepo;
+import com.iorazutkin.graduatework.entity.user.User;
+import com.iorazutkin.graduatework.exception.BadRequestException;
+import com.iorazutkin.graduatework.repo.task.QuestionRepo;
 import com.iorazutkin.graduatework.repo.task.TaskRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import com.iorazutkin.graduatework.service.FileService;
+import com.iorazutkin.graduatework.service.practice.PracticeService;
+import com.iorazutkin.graduatework.service.task.TaskResultService;
+import com.iorazutkin.graduatework.service.task.TaskService;
+import com.iorazutkin.graduatework.view.task.TaskView;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/task")
+@RequiredArgsConstructor
 public class TaskController {
-  @Autowired
-  private TaskRepo taskRepo;
+  private final TaskRepo taskRepo;
+  private final FileService fileService;
+  private final PracticeService practiceService;
+  private final TaskService taskService;
+  private final TaskResultService taskResultService;
+  private final QuestionRepo questionRepo;
 
-  @Autowired
-  private PracticeRepo practiceRepo;
-
-  @Value("${upload.path}")
-  private String uploadPath;
-
-  @GetMapping("{id}")
-  public ResponseEntity<List<Task>> findAllByPractice (
-    @AuthenticationPrincipal User user,
+  @GetMapping("/teacher/{id}")
+  @JsonView(TaskView.class)
+  public ResponseEntity<List<Task>> findAllByPracticeId (
     @PathVariable Long id
   ) {
-    Practice practice = practiceRepo.findById(id).get();
+    return ResponseEntity.ok(taskService.findAllByPracticeId(id));
+  }
 
-    if (practice == null) {
-      return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-    }
+  @GetMapping("{id}")
+  @JsonView(TaskView.class)
+  public ResponseEntity<List<TaskWithResultDto>> findAllByPractice (
+    @AuthenticationPrincipal User auth,
+    @PathVariable Long id
+  ) {
+    List<Task> taskList = taskService.findAllByPracticeId(id);
+    List<TaskWithResultDto> result = new ArrayList<>();
 
-    return new ResponseEntity<>(taskRepo.findAllByPractice(practice), null, HttpStatus.OK);
+    taskList.forEach(item -> {
+      TaskResult taskResult = taskResultService.findByTaskAndUser(item, auth);
+      result.add(new TaskWithResultDto(
+        item,
+        taskResult == null ? null : taskResult.getScore(),
+        questionRepo.countAllByTask(item)
+      ));
+    });
+
+    return ResponseEntity.ok(result);
+  }
+
+  @GetMapping("/teacher/{practiceId}/{userId}")
+  @JsonView(TaskView.class)
+  public ResponseEntity<List<TaskWithResultDto>> findAllWithResult (
+    @PathVariable Long practiceId,
+    @PathVariable Long userId
+  ) {
+    List<Task> taskList = taskService.findAllByPracticeId(practiceId);
+    List<TaskWithResultDto> result = new ArrayList<>();
+
+    taskList.forEach(item -> {
+      TaskResult taskResult = taskResultService.findByTaskAndUserId(item, userId);
+      result.add(new TaskWithResultDto(
+        item,
+        taskResult == null ? null : taskResult.getScore(),
+        questionRepo.countAllByTask(item)
+      ));
+    });
+
+    return ResponseEntity.ok(result);
   }
 
   @PostMapping
+  @JsonView(TaskView.class)
   public ResponseEntity<Task> addTask (
-    @AuthenticationPrincipal User user,
-    @RequestParam Long practiceId,
-    @RequestParam String title,
-    @RequestParam("file") MultipartFile file,
-    @RequestParam String finishDate
-    ) throws IOException {
-    Practice practice = practiceRepo.findById(practiceId).get();
+    @AuthenticationPrincipal User auth,
+    @Validated @ModelAttribute TaskDto taskDto
+  ) throws IOException {
+    Practice practice = practiceService.findById(taskDto.getPracticeId(), auth);
 
-    if (practice == null) {
-      return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-    }
+    String filePath = fileService.loadFile(taskDto.getFile(), "theory");
+    Task task = taskDto.toTask();
+    task.setPractice(practice);
+    task.setTheory(new Theory(filePath));
 
-    if (!practice.getTeacher().getUser().getUser().equals(user)) {
-      return new ResponseEntity<>(null, null, HttpStatus.FORBIDDEN);
-    }
-
-    if (file != null) {
-      File uploadDir = new File(uploadPath);
-
-      if (!uploadDir.exists()) {
-        uploadDir.mkdir();
-      }
-
-      String uuidFile = UUID.randomUUID().toString();
-      String resultFilename = uuidFile + "." + file.getOriginalFilename();
-
-      file.transferTo(new File(uploadPath + "/theory/" + resultFilename));
-
-      Task task = new Task();
-      task.setFinishDate(LocalDate.parse(finishDate));
-      task.setPractice(practice);
-      task.setTheory(new Theory(resultFilename));
-      task.setTitle(title);
-
-      return new ResponseEntity<>(taskRepo.save(task), null, HttpStatus.CREATED);
-    }
-
-    return new ResponseEntity<>(null, null, HttpStatus.UNPROCESSABLE_ENTITY);
+    return new ResponseEntity<>(taskRepo.save(task), HttpStatus.CREATED);
   }
 
   @PatchMapping("{id}")
+  @JsonView(TaskView.class)
   public ResponseEntity<Task> updateTask (
-    @AuthenticationPrincipal User user,
+    @AuthenticationPrincipal User auth,
     @PathVariable Long id,
-    @Validated @ModelAttribute TaskDto task
+    @Validated @ModelAttribute TaskDto taskDto
   ) throws IOException {
-    Task taskFromDb = taskRepo.findById(id).get();
+    Task task = taskService.findById(id, auth);
+    taskDto.copyNotNull(task);
 
-    if (taskFromDb == null) {
-      return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-    }
+    try {
+      String filePath = fileService.loadFile(taskDto.getFile(), "theory");
+      fileService.removeFile("theory", task.getTheory().getContentUrl());
+      task.getTheory().setContentUrl(filePath);
+    } catch (BadRequestException ignored) {}
 
-    if (!taskFromDb.getPractice().getTeacher().getUser().getUser().equals(user)) {
-      return new ResponseEntity<>(null, null, HttpStatus.FORBIDDEN);
-    }
-
-    if (task.getTitle() != null) {
-      taskFromDb.setTitle(task.getTitle());
-    }
-    if (task.getFinishDate() != null) {
-      taskFromDb.setFinishDate(LocalDate.parse(task.getFinishDate()));
-    }
-    if (task.getFile() != null) {
-      File uploadDir = new File(uploadPath);
-
-      if (!uploadDir.exists()) {
-        uploadDir.mkdir();
-      }
-
-      String uuidFile = UUID.randomUUID().toString();
-      String resultFilename = uuidFile + "." + task.getFile().getOriginalFilename();
-
-      task.getFile().transferTo(new File(uploadPath + "/theory/" + resultFilename));
-
-      File deleteFile = new File(uploadPath + "/" + taskFromDb.getTheory().getContentUrl());
-      deleteFile.delete();
-      taskFromDb.getTheory().setContentUrl(resultFilename);
-    }
-
-    taskFromDb = taskRepo.save(taskFromDb);
-
-    return new ResponseEntity<>(taskFromDb, null, HttpStatus.OK);
+    return ResponseEntity.ok(taskRepo.save(task));
   }
 
   @DeleteMapping("{id}")
-  public ResponseEntity<Object> deleteTask (
-    @AuthenticationPrincipal User user,
+  public ResponseEntity<Boolean> deleteTask (
+    @AuthenticationPrincipal User auth,
     @PathVariable Long id
   ) {
-    Task task = taskRepo.findById(id).get();
+    Task task = taskService.findById(id, auth);
+    task.setDeleted(true);
+    taskRepo.save(task);
 
-    if (task == null) {
-      return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
-    }
-
-    if (!task.getPractice().getTeacher().getUser().getUser().equals(user)) {
-      return new ResponseEntity<>(null, null, HttpStatus.FORBIDDEN);
-    }
-
-    taskRepo.delete(task);
-
-    return new ResponseEntity<>(null, null, HttpStatus.OK);
+    return ResponseEntity.ok(true);
   }
 }

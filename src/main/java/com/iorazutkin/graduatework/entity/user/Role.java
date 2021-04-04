@@ -1,6 +1,7 @@
-package com.iorazutkin.graduatework.entity;
+package com.iorazutkin.graduatework.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.iorazutkin.graduatework.view.user.UserView;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ public class Role {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @JsonView({ User.Info.class })
+  @JsonView(UserView.class)
   @Column
   private String name;
 }

@@ -1,12 +1,15 @@
 package com.iorazutkin.graduatework.api.practice;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.iorazutkin.graduatework.dto.ThemeDto;
-import com.iorazutkin.graduatework.entity.User;
+import com.iorazutkin.graduatework.entity.user.User;
 import com.iorazutkin.graduatework.entity.practice.Practice;
 import com.iorazutkin.graduatework.entity.practice.Theme;
-import com.iorazutkin.graduatework.repo.practice.PracticeRepo;
 import com.iorazutkin.graduatework.repo.practice.ThemeRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.iorazutkin.graduatework.service.practice.PracticeService;
+import com.iorazutkin.graduatework.service.practice.ThemeService;
+import com.iorazutkin.graduatework.view.practice.ThemeView;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,92 +19,57 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/theme")
+@RequiredArgsConstructor
 public class ThemeController {
-  @Autowired
-  private ThemeRepo themeRepo;
-
-  @Autowired
-  private PracticeRepo practiceRepo;
+  private final ThemeRepo themeRepo;
+  private final ThemeService themeService;
+  private final PracticeService practiceService;
 
   @GetMapping("{id}")
+  @JsonView(ThemeView.class)
   public ResponseEntity<List<Theme>> findAllByPractice (
-    @AuthenticationPrincipal User user,
     @PathVariable Long id
   ) {
-    Practice practice = practiceRepo.findById(id).get();
-
-    if (practice == null) {
-      return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-    }
-
-    List<Theme> themes = themeRepo.findAllByPractice(practice);
-
-    return new ResponseEntity<>(themes, null, HttpStatus.OK);
+    return ResponseEntity.ok(themeRepo.findAllByPracticeAndDeletedIsFalse(practiceService.findById(id)));
   }
 
   @PostMapping
+  @JsonView(ThemeView.class)
   public ResponseEntity<Theme> addTheme (
-    @AuthenticationPrincipal User user,
+    @AuthenticationPrincipal User auth,
     @RequestBody ThemeDto data
   ) {
-    Practice practice = practiceRepo.findById(data.getPracticeId()).get();
-
-    if (practice == null) {
-      return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-    }
-
-    if (!practice.getTeacher().getUser().getUser().equals(user)) {
-      return new ResponseEntity<>(null, null, HttpStatus.FORBIDDEN);
-    }
+    Practice practice = practiceService.findById(data.getPracticeId(), auth);
 
     Theme theme = new Theme();
     theme.setPractice(practice);
     theme.setTitle(data.getTitle());
 
-    theme = themeRepo.save(theme);
-
-    return new ResponseEntity<>(theme, null, HttpStatus.CREATED);
+    return new ResponseEntity<>(themeRepo.save(theme), HttpStatus.CREATED);
   }
 
   @PatchMapping("{id}")
+  @JsonView(ThemeView.class)
   public ResponseEntity<Theme> updateTheme (
-    @AuthenticationPrincipal User user,
+    @AuthenticationPrincipal User auth,
     @PathVariable Long id,
     @RequestBody Theme theme
   ) {
-    Theme themeFromDb = themeRepo.findById(id).get();
-
-    if (themeFromDb == null) {
-      return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-    }
-
-    if (!themeFromDb.getPractice().getTeacher().getUser().getUser().equals(user)) {
-      return new ResponseEntity<>(null, null, HttpStatus.FORBIDDEN);
-    }
-
+    Theme themeFromDb = themeService.findById(id, auth);
     themeFromDb.setTitle(theme.getTitle());
-    theme = themeRepo.save(themeFromDb);
 
-    return new ResponseEntity<>(theme, null, HttpStatus.OK);
+    return ResponseEntity.ok(themeRepo.save(themeFromDb));
   }
 
   @DeleteMapping("{id}")
-  public ResponseEntity<Object> deleteTheme (
-    @AuthenticationPrincipal User user,
+  public ResponseEntity<Boolean> deleteTheme (
+    @AuthenticationPrincipal User auth,
     @PathVariable Long id
   ) {
-    Theme theme = themeRepo.findById(id).get();
+    Theme theme = themeService.findById(id, auth);
+    theme.setDeleted(true);
+    themeRepo.save(theme);
 
-    if (theme == null) {
-      return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
-    }
-
-    if (!theme.getPractice().getTeacher().getUser().getUser().equals(user)) {
-      return new ResponseEntity<>(null, null, HttpStatus.FORBIDDEN);
-    }
-
-    themeRepo.delete(theme);
-
-    return new ResponseEntity<>(null, null, HttpStatus.OK);
+    return ResponseEntity.ok(true);
   }
 }

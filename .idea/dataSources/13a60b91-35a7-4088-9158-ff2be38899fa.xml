@@ -1010,6 +1010,7 @@ UC/10
     </table>
     <table id="40" parent="23" name="practice">
       <ObjectId>295013</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>3637</StateNumber>
     </table>
@@ -1040,6 +1041,7 @@ UC/10
     </table>
     <table id="46" parent="23" name="task">
       <ObjectId>295031</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>3726</StateNumber>
     </table>
@@ -1065,6 +1067,7 @@ UC/10
     </table>
     <table id="51" parent="23" name="theme">
       <ObjectId>295056</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>3642</StateNumber>
     </table>

@@ -1,6 +1,7 @@
-package com.iorazutkin.graduatework.entity;
+package com.iorazutkin.graduatework.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.iorazutkin.graduatework.view.user.UserView;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,19 +14,16 @@ import java.util.Collection;
 @Embeddable
 @Entity(name = "usr")
 public class User implements Serializable, UserDetails {
-  public interface Info {}
-
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @JsonView({ Info.class})
+  @JsonView(UserView.class)
   private Long id;
 
   @Column
-  @JsonView({ Info.class})
+  @JsonView(UserView.class)
   private String fullName;
 
   @Column
-  @JsonView({ Info.class})
   private String username;
 
   @Column
@@ -33,8 +31,12 @@ public class User implements Serializable, UserDetails {
 
   @ManyToOne
   @JoinColumn(name = "role_id")
-  @JsonView({ Info.class})
+  @JsonView(UserView.class)
   private Role role;
+
+  public Boolean isStudent () {
+    return this.getRole().getName().equals("STUDENT");
+  }
 
   @Override
   public boolean isAccountNonExpired () {

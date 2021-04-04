@@ -1,6 +1,8 @@
-package com.iorazutkin.graduatework.entity;
+package com.iorazutkin.graduatework.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.iorazutkin.graduatework.entity.institute.Group;
+import com.iorazutkin.graduatework.view.practice.StudentPracticeListView;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,6 +11,7 @@ import javax.persistence.*;
 @Entity
 public class Student {
   @EmbeddedId
+  @JsonView(StudentPracticeListView.class)
   private UserPK user;
 
   @Column

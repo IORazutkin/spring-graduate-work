@@ -1,17 +1,21 @@
 package com.iorazutkin.graduatework.api.task;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.iorazutkin.graduatework.dto.QuestionDto;
-import com.iorazutkin.graduatework.entity.Student;
-import com.iorazutkin.graduatework.entity.User;
-import com.iorazutkin.graduatework.entity.UserPK;
-import com.iorazutkin.graduatework.entity.task.*;
-import com.iorazutkin.graduatework.repo.StudentRepo;
-import com.iorazutkin.graduatework.repo.UserRepo;
-import com.iorazutkin.graduatework.repo.task.AnswerRepo;
+import com.iorazutkin.graduatework.entity.user.Student;
+import com.iorazutkin.graduatework.entity.user.User;
+import com.iorazutkin.graduatework.entity.task.Question;
+import com.iorazutkin.graduatework.entity.task.Task;
+import com.iorazutkin.graduatework.entity.task.TaskResult;
 import com.iorazutkin.graduatework.repo.task.QuestionRepo;
-import com.iorazutkin.graduatework.repo.task.TaskRepo;
 import com.iorazutkin.graduatework.repo.task.TaskResultRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.iorazutkin.graduatework.service.task.QuestionService;
+import com.iorazutkin.graduatework.service.user.StudentService;
+import com.iorazutkin.graduatework.service.task.TaskService;
+import com.iorazutkin.graduatework.view.task.QuestionTestView;
+import com.iorazutkin.graduatework.view.task.QuestionView;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,191 +23,102 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/question")
+@RequiredArgsConstructor
 public class QuestionController {
-  @Autowired
-  private QuestionRepo questionRepo;
+  private final QuestionRepo questionRepo;
+  private final TaskResultRepo taskResultRepo;
+  private final QuestionService questionService;
+  private final TaskService taskService;
+  private final StudentService studentService;
 
-  @Autowired
-  private TaskRepo taskRepo;
-
-  @Autowired
-  private TaskResultRepo taskResultRepo;
-
-  @Autowired
-  private StudentRepo studentRepo;
-
-  @Autowired
-  private AnswerRepo answerRepo;
-
-  @Autowired
-  private UserRepo userRepo;
-
-  @GetMapping("/teacher/{practiceId}/{studentId}")
+  @GetMapping("/teacher/{taskId}/{userId}")
+  @JsonView(QuestionView.class)
   public ResponseEntity<List<QuestionDto>> teacherCheckResult (
-    @AuthenticationPrincipal User user,
-    @PathVariable Long practiceId,
-    @PathVariable Long studentId
+    @PathVariable Long taskId,
+    @PathVariable Long userId
   ) {
-    Task task = taskRepo.findById(practiceId).get();
-
-    if (task == null) {
-      return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-    }
-
-    if (!task.getPractice().getTeacher().getUser().getUser().equals(user)) {
-      return new ResponseEntity<>(null, null, HttpStatus.FORBIDDEN);
-    }
-
-    User studentUser = userRepo.findById(studentId).get();
-    Student student = studentRepo.findById(new UserPK(studentUser)).get();
-    TaskResult taskResult = taskResultRepo.getTopByTaskAndStudent(task, student);
-
-    List<QuestionDto> questionList =
-      questionRepo
-        .findAllByTask(task)
-        .stream()
-        .map(QuestionDto::new)
-        .collect(Collectors.toList());
-
-    if (taskResult != null) {
-      List<Answer> answerList =
-        answerRepo.findAllById_TaskResult(taskResult);
-
-      questionList.forEach(item -> {
-        answerList.stream().filter(answer ->
-          answer.getId().getQuestion().equals(item.getQuestion())
-        ).findFirst().ifPresent(answer -> item.setAnswer(answer.getAnswer()));
-      });
-    }
-
-    return new ResponseEntity<>(questionList, null, HttpStatus.OK);
+    return ResponseEntity.ok(questionService.findByTaskIdAndUserId(taskId, userId));
   }
 
   @GetMapping("{id}")
+  @JsonView(QuestionView.class)
   public ResponseEntity<List<QuestionDto>> findAllByTask (
-    @AuthenticationPrincipal User user,
+    @CookieValue(name = "task", required = false) Cookie reqCookie,
+    @AuthenticationPrincipal User auth,
     @PathVariable Long id,
     HttpServletResponse response
   ) {
-    Task task = taskRepo.findById(id).get();
+    Task task = taskService.findById(id);
+    List<QuestionDto> questionList = questionService.findDtoByTask(task);
 
-    if (task == null) {
-      return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-    }
-
-    List<QuestionDto> questionList =
-      questionRepo
-        .findAllByTask(task)
-        .stream()
-        .map(QuestionDto::new)
-        .collect(Collectors.toList());
-
-    if (!task.getFinishDate().isAfter(LocalDate.now())) {
-      return new ResponseEntity<>(questionList, null, HttpStatus.OK);
-    }
-
-    if (user.getRole().getName().equals("STUDENT")) {
-      Student student = studentRepo.findById(new UserPK(user)).get();
+    if (auth.isStudent()) {
+      Student student = studentService.findByUser(auth);
       TaskResult taskResult = taskResultRepo.getTopByTaskAndStudent(task, student);
+      questionList = questionService.setAnswers(questionList, taskResult);
+
+      if (!task.isDateOfOut()) {
+        return ResponseEntity.ok(questionList);
+      }
+
+      if (reqCookie != null || taskResult == null) {
+        questionService.removeRightAnswer(questionList);
+      }
 
       if (taskResult == null) {
         taskResult = new TaskResult(student, task);
         taskResultRepo.save(taskResult);
 
         Cookie cookie = new Cookie("task", task.getId().toString());
-        cookie.setMaxAge(60 * 5);
+        cookie.setMaxAge(60 * questionList.size());
         cookie.setPath("/");
         cookie.setDomain("localhost");
         response.addCookie(cookie);
-      } else {
-        List<Answer> answerList =
-          answerRepo.findAllById_TaskResult(taskResult);
-
-        questionList.forEach(item -> {
-          answerList.stream().filter(answer ->
-            answer.getId().getQuestion().equals(item.getQuestion())
-          ).findFirst().ifPresent(answer -> item.setAnswer(answer.getAnswer()));
-        });
       }
-    } else if (!task.getPractice().getTeacher().getUser().getUser().equals(user)) {
-      return new ResponseEntity<>(null, null, HttpStatus.FORBIDDEN);
+    } else if (!task.getPractice().getTeacher().getUser().getUser().equals(auth)) {
+      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
-    return new ResponseEntity<>(questionList, null, HttpStatus.OK);
+    return ResponseEntity.ok(questionList);
   }
 
   @PostMapping("{id}")
-  public ResponseEntity<Question> addQuestion (
-    @AuthenticationPrincipal User user,
+  @JsonView(QuestionView.class)
+  public ResponseEntity<QuestionDto> addQuestion (
+    @AuthenticationPrincipal User auth,
     @PathVariable Long id,
     @RequestBody Question question
   ) {
-    Task task = taskRepo.findById(id).get();
-
-    if (task == null) {
-      return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-    }
-
-    if (!task.getPractice().getTeacher().getUser().getUser().equals(user)) {
-      return new ResponseEntity<>(null, null, HttpStatus.FORBIDDEN);
-    }
-
+    Task task = taskService.findById(id, auth);
     question.setTask(task);
-    question = questionRepo.save(question);
 
-    return new ResponseEntity<>(question, null, HttpStatus.OK);
+    return ResponseEntity.ok(new QuestionDto(questionRepo.save(question)));
   }
 
   @PatchMapping("{id}")
-  public ResponseEntity<Question> editQuestion (
-    @AuthenticationPrincipal User user,
+  @JsonView(QuestionView.class)
+  public ResponseEntity<QuestionDto> editQuestion (
+    @AuthenticationPrincipal User auth,
     @PathVariable Long id,
     @RequestBody Question question
   ) {
-    Question questionFromDb = questionRepo.findById(id).get();
+    Question questionFromDb = questionService.findById(id, auth);
 
-    if (questionFromDb == null) {
-      return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-    }
-
-    if (!questionFromDb.getTask().getPractice().getTeacher().getUser().getUser().equals(user)) {
-      return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-    }
-
-    questionFromDb.setQuestion(question.getQuestion());
-    questionFromDb.setAnswers(question.getAnswers());
-    questionFromDb.setRightAnswer(question.getRightAnswer());
-
-    question = questionRepo.save(questionFromDb);
-
-    return new ResponseEntity<>(question, null, HttpStatus.OK);
+    BeanUtils.copyProperties(question, questionFromDb, "id", "task");
+    return ResponseEntity.ok(new QuestionDto(questionRepo.save(questionFromDb)));
   }
 
   @DeleteMapping("{id}")
-  public ResponseEntity<Object> deleteQuestion (
-    @AuthenticationPrincipal User user,
+  public ResponseEntity<Boolean> deleteQuestion (
+    @AuthenticationPrincipal User auth,
     @PathVariable Long id
   ) {
-    Question question = questionRepo.findById(id).get();
-
-    if (question == null) {
-      return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-    }
-
-    if (!question.getTask().getPractice().getTeacher().getUser().getUser().equals(user)) {
-      return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-    }
-
+    Question question = questionService.findById(id, auth);
     questionRepo.delete(question);
 
-    return new ResponseEntity<>(null, null, HttpStatus.OK);
+    return ResponseEntity.ok(true);
   }
 }

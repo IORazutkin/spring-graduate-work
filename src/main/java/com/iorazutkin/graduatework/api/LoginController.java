@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
   @GetMapping("/login-error")
   public ResponseEntity<Object> wrongData () {
-    return new ResponseEntity<>(null, null, HttpStatus.INTERNAL_SERVER_ERROR);
+    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
   @GetMapping("/login")
   public ResponseEntity<Object> unauthorized () {
-    return new ResponseEntity<>(null,null, HttpStatus.UNAUTHORIZED);
+    return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
   }
 }

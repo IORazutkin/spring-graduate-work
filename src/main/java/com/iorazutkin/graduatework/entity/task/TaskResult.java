@@ -1,6 +1,6 @@
 package com.iorazutkin.graduatework.entity.task;
 
-import com.iorazutkin.graduatework.entity.Student;
+import com.iorazutkin.graduatework.entity.user.Student;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,12 +21,20 @@ public class TaskResult {
   private Task task;
 
   @Column
-  private Integer score;
+  private Integer score = 0;
 
   public TaskResult () {}
 
   public TaskResult (Student student, Task task) {
     this.student = student;
     this.task = task;
+  }
+
+  public void incScore () {
+    this.score++;
+  }
+
+  public void decScore () {
+    this.score--;
   }
 }
